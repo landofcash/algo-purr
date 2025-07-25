@@ -1,6 +1,5 @@
-import React from 'react';
 import { useState } from 'react';
-import { Eye, Sparkles, Heart } from 'lucide-react';
+import { Eye, Heart } from 'lucide-react';
 import { EncoderPanel } from './components/EncoderPanel';
 import { DecoderPanel } from './components/DecoderPanel';
 import { AlphabetModal } from './components/AlphabetModal';
@@ -9,7 +8,7 @@ import { EMOJI_ALPHABET } from './utils/algorand';
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  return (
+  return (    
     <div className="min-h-screen bg-gradient-to-br from-pink-50 via-purple-50 to-indigo-100 py-8 px-4 relative overflow-hidden">
       {/* Background decorative elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -42,7 +41,14 @@ function App() {
               </div>
             </div>
           </div>
-          
+        </header>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <EncoderPanel />
+          <DecoderPanel />
+        </div>
+
+        <div className="text-center mt-8 mb-8">
           <button
             onClick={() => setIsModalOpen(true)}
             className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-orange-400 to-amber-500 hover:from-orange-500 hover:to-amber-600 text-white rounded-full transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 font-medium"
@@ -50,11 +56,6 @@ function App() {
             <Eye className="w-5 h-5" />
             View purr-fect Alphabet
           </button>
-        </header>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <EncoderPanel />
-          <DecoderPanel />
         </div>
 
         <footer className="text-center mt-12 relative">
@@ -63,11 +64,15 @@ function App() {
               <span className="text-xl">🐾</span>
               <Heart className="w-5 h-5 text-orange-400" />
               <span className="text-xl">🐾</span>
-            </div>
-            <p className="text-gray-600 font-medium">
-              Enter a valid 58-character Algorand address to encode, or paste an emoji sequence to decode
+            </div>            
+
+            <p className="text-xs text-gray-500 mt-2">
+              Support purr-fect devs
             </p>
-            <p className="text-sm text-gray-500 mt-2">
+            <p className="text-xs text-gray-500 mt-1 break-all select-all font-mono">
+              🚶💃😭🤗🖤😯👀🖐️✌️🤙🤤📱✈️🤬✔️🎊🎉❓😂☠️💅👇🤞💖😟🌷🌊🌿☀️⚠️🎵🤝😬
+            </p>
+            <p className="text-sm text-gray-500 mt-4">
               Made with love for the algofam 🐱💕
             </p>
           </div>
@@ -80,7 +85,6 @@ function App() {
         />
       </div>
     </div>
-  );
-}
+  )}
 
 export default App;

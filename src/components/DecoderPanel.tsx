@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Sparkles, ArrowLeft } from 'lucide-react';
+import { Sparkles, ArrowLeft, QrCode } from 'lucide-react';
+import { QrcodeCanvas } from 'react-qrcode-pretty';
 import { CopyButton } from './CopyButton';
 import { emojiToAlgorand } from '../utils/algorand';
 
@@ -38,19 +39,19 @@ export function DecoderPanel() {
       
       <div className="flex items-center gap-3 mb-6">
         <div className="p-2 bg-gradient-to-r from-amber-100 to-yellow-100 rounded-full">
-          <ArrowLeft className="w-6 h-6 text-amber-600" />
+          <ArrowLeft className="w-4 h-4 text-amber-600" />
         </div>
         <h2 className="text-2xl font-bold bg-gradient-to-r from-amber-600 to-yellow-600 bg-clip-text text-transparent">
           Decode from Purr-fect 
         </h2>
-        <span className="text-xl">😺</span>
+        <span className="text-lg">😺</span>
       </div>
       
       <div className="space-y-4">
         <div>
           <label htmlFor="emoji-input" className="block text-sm font-semibold text-gray-700 mb-3 flex items-center gap-2">
             Purr-fect Address
-            <span className="text-amber-400">🐈</span>
+            <span className="text-amber-400 text-sm">🐈</span>
           </label>
           <textarea
             id="emoji-input"
@@ -58,8 +59,9 @@ export function DecoderPanel() {
             onChange={(e) => setInput(e.target.value)}
             onKeyPress={handleKeyPress}
             rows={4}
-            placeholder="Paste purr-fect sequence here..."
-            className="w-full px-4 py-3 border-2 border-amber-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-amber-400 transition-all duration-300 bg-white/70 backdrop-blur-sm resize-none text-2xl leading-relaxed"
+            className="w-full px-4 py-3 pr-14 border-2 border-orange-200 rounded-2xl bg-orange-50/50 backdrop-blur-sm resize-none focus:outline-none text-lg leading-relaxed"
+            placeholder="Paste purr-fect sequence (33 emojis) here..."
+            placeholder="Decoded Algorand address will appear here..."
           />
         </div>
 
@@ -88,7 +90,7 @@ export function DecoderPanel() {
               type="text"
               value={output}
               readOnly
-              className="w-full px-4 py-3 pr-14 border-2 border-amber-200 rounded-2xl bg-amber-50/50 backdrop-blur-sm focus:outline-none font-mono text-sm"
+              className="w-full px-4 py-3 pr-14 border-2 border-amber-200 rounded-2xl bg-amber-50/50 backdrop-blur-sm focus:outline-none font-mono text-xs"
               placeholder="Decoded Algorand address will appear here..."
             />
             <div className="absolute top-1/2 right-3 transform -translate-y-1/2">
@@ -96,6 +98,44 @@ export function DecoderPanel() {
             </div>
           </div>
         </div>
+
+        {output && (
+          <div className="mt-6 p-6 bg-gradient-to-br from-amber-50 to-yellow-50 rounded-2xl border border-amber-200/50">
+            <div className="flex items-center gap-2 mb-4">
+              <QrCode className="w-5 h-5 text-amber-600" />
+              <h3 className="font-bold text-amber-900">QR Code</h3>
+              <span className="text-lg">📱</span>
+            </div>
+            <div className="flex justify-center">
+              <div className="p-4 bg-white rounded-2xl shadow-lg border border-amber-200/30">
+                <QrcodeCanvas
+                  value={output}
+                  image = {{ 
+                    src: 'qg-purr.png',
+                    width: 45,
+                    height: 45
+                  }}
+                  variant={{
+                    eyes: 'gravity',
+                    body: 'fluid'
+                }}
+                  color={{
+                    eyes: '#223344',
+                    body: '#335577'
+                }}
+                  size={200} 
+                  bgColor="#FDFDFD"
+                  fgColor="#c2410c"
+                  bgRounded
+                  
+                />
+              </div>
+            </div>
+            <p className="text-center text-sm text-amber-700 mt-3 font-medium">
+              Scan to copy the Algorand address
+            </p>
+          </div>
+        )}
       </div>
     </div>
   );

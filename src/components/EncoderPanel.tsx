@@ -38,19 +38,19 @@ export function EncoderPanel() {
       
       <div className="flex items-center gap-3 mb-6">
         <div className="p-2 bg-gradient-to-r from-orange-100 to-amber-100 rounded-full">
-          <ArrowRight className="w-6 h-6 text-orange-600" />
+          <ArrowRight className="w-4 h-4 text-orange-600" />
         </div>
         <h2 className="text-2xl font-bold bg-gradient-to-r from-orange-600 to-amber-600 bg-clip-text text-transparent">
           Encode to Purr-fect
         </h2>
-        <span className="text-xl">🐾</span>
+        <span className="text-lg">🐾</span>
       </div>
       
       <div className="space-y-4">
         <div>
           <label htmlFor="algorand-input" className="block text-sm font-semibold text-gray-700 mb-3 flex items-center gap-2">
             Algorand Address
-            <span className="text-orange-400">🐱</span>
+            <span className="text-orange-400 text-sm">🐱</span>
           </label>
           <input
             id="algorand-input"
@@ -59,7 +59,7 @@ export function EncoderPanel() {
             onChange={(e) => setInput(e.target.value)}
             onKeyPress={handleKeyPress}
             placeholder="Enter Algorand address (58 characters)"
-            className="w-full px-4 py-3 border-2 border-orange-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400 transition-all duration-300 bg-white/70 backdrop-blur-sm font-mono text-sm"
+            className="w-full px-4 py-3 border-2 border-orange-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400 transition-all duration-300 bg-white/70 backdrop-blur-sm font-mono text-xs"
           />
         </div>
 
@@ -88,8 +88,8 @@ export function EncoderPanel() {
               value={output}
               readOnly
               rows={3}
-              className="w-full px-4 py-3 pr-14 border-2 border-orange-200 rounded-2xl bg-orange-50/50 backdrop-blur-sm resize-none focus:outline-none text-2xl leading-relaxed"
-              placeholder="Encoded purr-fect address will appear here..."
+              className="w-full px-4 py-3 pr-14 border-2 border-orange-200 rounded-2xl bg-orange-50/50 backdrop-blur-sm resize-none focus:outline-none text-lg leading-relaxed"
+              placeholder="Encoded purr-fect address (33 emojis) will appear here..."
             />
             <div className="absolute top-3 right-3">
               <CopyButton text={output} disabled={!output} />
